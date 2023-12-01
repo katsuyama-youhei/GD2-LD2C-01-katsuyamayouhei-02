@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraPlayer : MonoBehaviour
+public class CoinScript : MonoBehaviour
 {
-
-    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +13,20 @@ public class CameraPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x-3.0f, player.transform.position.y+5.57f, player.transform.position.z-12f);
+        
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GetCoin();
+        }
+    }
+
+    private void GetCoin()
+    {
+
+    }
+
 }

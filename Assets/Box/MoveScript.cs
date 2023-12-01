@@ -1,22 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class MoveScript : MonoBehaviour
 {
-    private float moveSpeed = 8.0f;
+    public float moveSpeed;
 
     public float windPower = 0;
 
-    private float gravity=-0.2f;
-
     private float downpower = 0;
+
+    private float defaultDrag = 5.0f;
+
+    Rigidbody rb;
+
+    public bool isCollision = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
+        rb.drag = defaultDrag;
     }
 
     // Update is called once per frame
@@ -30,20 +36,56 @@ public class MoveScript : MonoBehaviour
         // 下入力が入っていれば下降力を加算
         if (verticalInput < 0)
         {
-            downpower = -0.8f;
+            downpower = -1f;
         }
         else
         {
             downpower = 0f;
         }
         // 入力から移動ベクトルを作成
-        Vector3 movement = new Vector3(horizontalInput, windPower+ gravity+ downpower, 0f);
+        Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
-
+        Vector3 newPosition = new Vector3(movement.x * moveSpeed, (windPower + downpower) * moveSpeed, 0f);
 
         // プレイヤーの座標を更新
-        transform.position += movement * moveSpeed * Time.deltaTime;
+        transform.position += newPosition * Time.deltaTime;
 
+        WindPower();
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+      //  isCollision = true;
+       
+        //Debug.Log("true");
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+      //  isCollision = false;
+       // Debug.Log("false");
+
+    }
+
+    private void WindPower()
+    {
+        if (isCollision)
+        {
+            windPower = 0.8f;
+        }
+        else
+        {
+            if (windPower > 0)
+            {
+                windPower -= 2.0f * Time.deltaTime;
+                if (windPower < 0)
+                {
+                    windPower = 0;
+                }
+            }
+        }
     }
 
 }
