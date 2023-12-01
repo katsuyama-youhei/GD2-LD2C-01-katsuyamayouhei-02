@@ -42,6 +42,12 @@ public class MoveScript : MonoBehaviour
         {
             downpower = 0f;
         }
+
+        // player‚ªŒã‚ë‚É‰º‚ª‚ê‚È‚¢‚æ‚¤‚É
+      /*  if (horizontalInput < 0)
+        {
+            horizontalInput = 0;
+        }*/
         // “ü—Í‚©‚çˆÚ“®ƒxƒNƒgƒ‹‚ðì¬
         Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
