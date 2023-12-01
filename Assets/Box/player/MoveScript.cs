@@ -54,7 +54,9 @@ public class MoveScript : MonoBehaviour
         Vector3 newPosition = new Vector3(movement.x * moveSpeed, (windPower + downpower) * moveSpeed, 0f);
 
         // プレイヤーの座標を更新
-        transform.position += newPosition * Time.deltaTime;
+       // transform.position += newPosition * Time.deltaTime;
+
+        rb.velocity = newPosition;
 
         WindPower();
 
