@@ -167,6 +167,8 @@ MonoBehaviour:
   neutralRotateZ: 0
   upRotateZ: 0
   downRotateZ: 0
+  isGoal: 0
+  isAlive: 1
 --- !u!114 &2418428294959716450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4374a743ad0db64418bab984b6d0c4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadScene: 
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  fadeSpeedMultiplier: 1
