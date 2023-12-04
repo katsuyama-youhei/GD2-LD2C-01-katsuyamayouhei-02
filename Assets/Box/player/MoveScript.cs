@@ -6,17 +6,31 @@ using UnityEngine;
 
 public class MoveScript : MonoBehaviour
 {
-    public float moveSpeed;
+    public float moveSpeedX;
 
-    public float windPower = 0;
+    public float moveSpeedY;
+
+    private float windPower = 0;
+
+    private float windPowerX = 0;
 
     private float downpower = 0;
 
-    private float defaultDrag = 5.0f;
+    private float defaultDrag = 0.0f;
 
     Rigidbody rb;
 
     public bool isCollision = false;
+
+    public float playerGravity;
+
+    public float neutralRotateZ;
+
+    public float upRotateZ;
+
+    public float downRotateZ;
+
+    public float rotateSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -43,37 +57,42 @@ public class MoveScript : MonoBehaviour
             downpower = 0f;
         }
 
+        WindPower();
+
         // playerが後ろに下がれないように
-      /*  if (horizontalInput < 0)
-        {
-            horizontalInput = 0;
-        }*/
+        /*  if (horizontalInput < 0)
+          {
+              horizontalInput = 0;
+          }*/
         // 入力から移動ベクトルを作成
         Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
-        Vector3 newPosition = new Vector3(movement.x * moveSpeed, (windPower + downpower) * moveSpeed, 0f);
+        Vector3 newPosition = new Vector3((movement.x + windPowerX) * moveSpeedX, (windPower + downpower) * moveSpeedY - playerGravity, 0f);
 
-        // プレイヤーの座標を更新
-       // transform.position += newPosition * Time.deltaTime;
+
 
         rb.velocity = newPosition;
 
-        WindPower();
 
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-      //  isCollision = true;
-       
-        //Debug.Log("true");
 
-    }
+        if (downpower < 0)
+        {
+            Vector3 currentRotation = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, downRotateZ);
+        }
+        else if (windPower > 0)
+        {
+            Vector3 currentRotation = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, upRotateZ);
+        }
+        else
+        {
+            Vector3 currentRotation = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, neutralRotateZ);
+        }
 
-    private void OnTriggerExit(Collider other)
-    {
-      //  isCollision = false;
-       // Debug.Log("false");
+
 
     }
 
@@ -82,18 +101,50 @@ public class MoveScript : MonoBehaviour
         if (isCollision)
         {
             windPower = 0.8f;
+            windPowerX = 0.3f;
         }
         else
         {
             if (windPower > 0)
             {
                 windPower -= 2.0f * Time.deltaTime;
+                windPowerX -= 2.0f * Time.deltaTime;
+
                 if (windPower < 0)
                 {
                     windPower = 0;
                 }
+                if (windPowerX < 0)
+                {
+                    windPowerX = 0;
+                }
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        string collidedObjectTag = collision.gameObject.tag;
+
+        // 取得したタグを使って何かしらの処理を行う
+        if (collidedObjectTag == "Goal")
+        {
+            Debug.Log("ゴール");
+        }
+    }
+
+    void RotateUp()
+    {
+        Vector3 currentRotation = transform.rotation.eulerAngles;
+
+        float newRotation = currentRotation.z + upRotateZ * Time.deltaTime;
+
+        transform.rotation = Quaternion.Euler(currentRotation.x, newRotation, currentRotation.z);
+    }
+
+    void RotateDown()
+    {
+
     }
 
 }

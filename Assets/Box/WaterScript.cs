@@ -24,4 +24,15 @@ public class WaterScript : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        string collidedObjectTag = collision.gameObject.tag;
+
+        // 取得したタグを使って何かしらの処理を行う
+        if (collidedObjectTag == "Player")
+        {
+            Debug.Log("水にあたった");
+        }
+    }
+
 }

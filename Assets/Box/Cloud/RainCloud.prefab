@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2646897816470025658}
   - component: {fileID: 8135881746259596258}
+  - component: {fileID: -8641944478432494932}
   m_Layer: 0
   m_Name: RainCloud
   m_TagString: Untagged
@@ -46,6 +47,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.4350343, y: 1.3160064, z: 2.5043688}
   m_Center: {x: 1.2128922, y: -0.04353559, z: 0.06343407}
+--- !u!114 &-8641944478432494932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3454396320851406592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a19926e58a44e44ca525298043d50ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5944101450201225177
 GameObject:
   m_ObjectHideFlags: 0
