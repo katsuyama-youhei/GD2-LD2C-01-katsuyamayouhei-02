@@ -31,6 +31,13 @@ public class MoveScript : MonoBehaviour
 
     public float downRotateZ;
 
+    public bool isGoal = false;
+
+    private float horizontalInput = 0;
+    private float verticalInput = 0;
+
+    public bool isAlive = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,9 +48,20 @@ public class MoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // “ü—Í‚ğæ“¾
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+
+
+        if (!isGoal)
+        {
+            // “ü—Í‚ğæ“¾
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            horizontalInput = 0f;
+            verticalInput = 0f;
+        }
+
 
 
         // ‰º“ü—Í‚ª“ü‚Á‚Ä‚¢‚ê‚Î‰º~—Í‚ğ‰ÁZ
@@ -78,7 +96,7 @@ public class MoveScript : MonoBehaviour
         if (verticalInput < 0)
         {
             transform.DORotate(new Vector3(0, 0, downRotateZ), 1, RotateMode.Fast);
-           
+
         }
         else if (isCollision)
         {
@@ -125,21 +143,8 @@ public class MoveScript : MonoBehaviour
         if (collidedObjectTag == "Goal")
         {
             Debug.Log("ƒS[ƒ‹");
+            // isLife = false;
         }
-    }
-
-    void RotateUp()
-    {
-        Vector3 currentRotation = transform.rotation.eulerAngles;
-
-        float newRotation = currentRotation.z + upRotateZ * Time.deltaTime;
-
-        transform.rotation = Quaternion.Euler(currentRotation.x, newRotation, currentRotation.z);
-    }
-
-    void RotateDown()
-    {
-
     }
 
 }
