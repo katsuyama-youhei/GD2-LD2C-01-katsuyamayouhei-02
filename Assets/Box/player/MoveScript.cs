@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using DG.Tweening;
 
 public class MoveScript : MonoBehaviour
 {
@@ -29,8 +30,6 @@ public class MoveScript : MonoBehaviour
     public float upRotateZ;
 
     public float downRotateZ;
-
-    public float rotateSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -76,20 +75,18 @@ public class MoveScript : MonoBehaviour
 
 
 
-        if (downpower < 0)
+        if (verticalInput < 0)
         {
-            Vector3 currentRotation = transform.rotation.eulerAngles;
-            transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, downRotateZ);
+            transform.DORotate(new Vector3(0, 0, downRotateZ), 1, RotateMode.Fast);
+           
         }
-        else if (windPower > 0)
+        else if (isCollision)
         {
-            Vector3 currentRotation = transform.rotation.eulerAngles;
-            transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, upRotateZ);
+            transform.DORotate(new Vector3(0, 0, upRotateZ), 1, RotateMode.Fast);
         }
         else
         {
-            Vector3 currentRotation = transform.rotation.eulerAngles;
-            transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, neutralRotateZ);
+            transform.DORotate(new Vector3(0, 0, neutralRotateZ), 1, RotateMode.Fast);
         }
 
 
@@ -101,7 +98,7 @@ public class MoveScript : MonoBehaviour
         if (isCollision)
         {
             windPower = 0.8f;
-            windPowerX = 0.3f;
+            windPowerX = -0.2f;
         }
         else
         {
@@ -114,11 +111,9 @@ public class MoveScript : MonoBehaviour
                 {
                     windPower = 0;
                 }
-                if (windPowerX < 0)
-                {
-                    windPowerX = 0;
-                }
             }
+
+            windPowerX = 0;
         }
     }
 
