@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3497460754207431077}
   - component: {fileID: -5216993099400058677}
+  - component: {fileID: -122943668135262726}
   m_Layer: 0
   m_Name: kumo
   m_TagString: Untagged
@@ -46,6 +47,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.155949, y: 1.761653, z: 2.1344783}
   m_Center: {x: 1.2302858, y: -0.060130596, z: -0.0069433013}
+--- !u!114 &-122943668135262726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306191841190413087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a19926e58a44e44ca525298043d50ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrehub: {fileID: 2620708782576706653, guid: 74f2d13af2524e246a37df94917c1b04,
+    type: 3}
 --- !u!1 &5066375077834292166
 GameObject:
   m_ObjectHideFlags: 0
