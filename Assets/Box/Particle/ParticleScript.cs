@@ -12,25 +12,36 @@ public class ParticleScript : MonoBehaviour
     private Vector3 velocity;
     private Vector3 defaultScale;
     public float maxVelocity;
+    private float randomPosition;
     // Start is called before the first frame update
     void Start()
     {
-        lifeTimer = 0.2f;
+        lifeTimer = 1f;
         leftLifeTime = lifeTimer;
         defaultScale = transform.localScale;
 
         velocity = new Vector3
             (
+            Random.Range(-maxVelocity, maxVelocity+3f),
             Random.Range(-maxVelocity, maxVelocity),
-            Random.Range(-maxVelocity, maxVelocity),
-            0
+            Random.Range(-maxVelocity, maxVelocity)
             );
+
+        randomPosition = Random.Range(0.4f, 0.8f);
     }
 
     // Update is called once per frame
     void Update()
     {
         leftLifeTime -= Time.deltaTime;
+
+        if( leftLifeTime < randomPosition) {
+            if (velocity.y > 0)
+            {
+                velocity.y *= -1;
+            }
+        }
+
         transform.position += velocity * Time.deltaTime;
         transform.localScale = Vector3.Lerp
             (

@@ -21,16 +21,36 @@ public class WaterScript : MonoBehaviour
         
     }
 
+     /* private void OnTriggerStay(Collider other)
+      {
+          if (other.CompareTag("Player"))
+          {
+             // Debug.Log("êÖÇ…Ç†ÇΩÇ¡ÇΩ");
+              //playerMove.isAlive = false;
+            for(int i = 0; i < 50; i++)
+              {
+                  Vector3 pos = new Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y, player.gameObject.transform.position.z-0.6f);
+                  Instantiate(particlePrehub,pos, Quaternion.identity);
+              }
+          }
+      }*/
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("êÖÇ…Ç†ÇΩÇ¡ÇΩ");
             playerMove.isAlive = false;
-            for(int i = 0; i < 20; i++)
+            Vector3 pos = new Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y, player.gameObject.transform.position.z - 0.5f);
+            for (int i = 0; i < 30; i++)
             {
-                Vector3 pos = new Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y, player.gameObject.transform.position.z);
+                
                 Instantiate(particlePrehub,pos, Quaternion.identity);
+            }
+            Vector3 pos2 = new Vector3(player.gameObject.transform.position.x+0.3f, player.gameObject.transform.position.y, player.gameObject.transform.position.z - 0.5f);
+            for (int i = 0; i < 20; i++)
+            {
+                Instantiate(particlePrehub, pos2, Quaternion.identity);
             }
         }
     }
