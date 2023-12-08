@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
@@ -18,6 +19,17 @@ public class ParticleScript : MonoBehaviour
     {
         lifeTimer = 1f;
         leftLifeTime = lifeTimer;
+
+        Vector3 newScale = new Vector3(
+          Random.Range(0.5f, 1f),
+          Random.Range(0.2f, 1f),
+          Random.Range(0.2f, 1f)
+          );
+
+        Transform transform = GetComponent<Transform>();
+
+        transform.localScale = newScale;
+
         defaultScale = transform.localScale;
 
         velocity = new Vector3
@@ -28,6 +40,8 @@ public class ParticleScript : MonoBehaviour
             );
 
         randomPosition = Random.Range(0.4f, 0.8f);
+
+      
     }
 
     // Update is called once per frame
