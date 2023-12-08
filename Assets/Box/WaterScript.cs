@@ -7,6 +7,7 @@ public class WaterScript : MonoBehaviour
 
     private GameObject player;
     private MoveScript playerMove;
+    public GameObject particlePrehub;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,11 @@ public class WaterScript : MonoBehaviour
         {
             Debug.Log("êÖÇ…Ç†ÇΩÇ¡ÇΩ");
             playerMove.isAlive = false;
+            for(int i = 0; i < 20; i++)
+            {
+                Vector3 pos = new Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y, player.gameObject.transform.position.z);
+                Instantiate(particlePrehub,pos, Quaternion.identity);
+            }
         }
     }
 

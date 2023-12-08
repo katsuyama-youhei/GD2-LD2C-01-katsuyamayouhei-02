@@ -5585,6 +5585,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5704,6 +5705,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 919132148160465258}
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd038e7d984ccf43bebbc7f766f8450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadScene: SampleScene
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  fadeSpeedMultiplier: 1
 --- !u!4 &349551481 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3497460754207431077, guid: 9be790c1cab18494d9da774f1ed3a30e,
@@ -12712,7 +12728,7 @@ PrefabInstance:
     - target: {fileID: 7860637592169248516, guid: 9b48abe445ae29346baf7b9560836964,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 170.5
+      value: 4.9
       objectReference: {fileID: 0}
     - target: {fileID: 7860637592169248516, guid: 9b48abe445ae29346baf7b9560836964,
         type: 3}
