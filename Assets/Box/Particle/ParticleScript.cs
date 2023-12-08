@@ -17,9 +17,10 @@ public class ParticleScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // パーティクルの表示時間
         lifeTimer = 1f;
         leftLifeTime = lifeTimer;
-
+        // 乱数でパーティクルのスケールを変更
         Vector3 newScale = new Vector3(
           Random.Range(0.5f, 1f),
           Random.Range(0.2f, 1f),
@@ -32,6 +33,7 @@ public class ParticleScript : MonoBehaviour
 
         defaultScale = transform.localScale;
 
+        // パーティクルの飛んでいく方向を乱数で
         velocity = new Vector3
             (
             Random.Range(-maxVelocity, maxVelocity+3f),

@@ -25,7 +25,15 @@ public class RestartScript : MonoBehaviour
     void Update()
     {
         if(!playerMove.isAlive) {
-            if (Input.GetKeyDown(KeyCode.Space))
+           /* if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Initiate.Fade(loadScene, fadeColor, fadeSpeedMultiplier);
+            }*/
+           //　指定したタグを持つオブジェクトをすべて取得
+            GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("PaperDust");
+
+            // 配列が空かどうかを確認して処理を行う
+            if (objectsWithTag.Length == 0)
             {
                 Initiate.Fade(loadScene, fadeColor, fadeSpeedMultiplier);
             }
