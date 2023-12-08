@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
 
 public class MoveScript : MonoBehaviour
 {
@@ -38,11 +39,18 @@ public class MoveScript : MonoBehaviour
 
     public bool isAlive = true;
 
+
+    private  GameObject nullPrefab;
+    private GameManagerScript gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.drag = defaultDrag;
+
+        nullPrefab = GameObject.FindGameObjectWithTag("IsAlive");
+        gameManager = nullPrefab.GetComponent<GameManagerScript>();
     }
 
     // Update is called once per frame

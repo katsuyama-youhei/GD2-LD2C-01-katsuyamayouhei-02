@@ -7,12 +7,19 @@ public class WaterScript : MonoBehaviour
 
     private GameObject player;
     private MoveScript playerMove;
+
+    private GameObject manager;
+    private GameManagerScript gameManager;
+
     public GameObject particlePrehub;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerMove = player.GetComponent<MoveScript>();
+
+        manager = GameObject.FindGameObjectWithTag("IsAlive");
+        gameManager=manager.GetComponent<GameManagerScript>();
     }
 
     // Update is called once per frame
@@ -38,7 +45,7 @@ public class WaterScript : MonoBehaviour
             {
                 Instantiate(particlePrehub, pos2, Quaternion.identity);
             }
-            playerMove.isAlive = false;
+            gameManager.isAlive = false;
         }
     }
 
@@ -61,7 +68,7 @@ public class WaterScript : MonoBehaviour
             {
                 Instantiate(particlePrehub, pos2, Quaternion.identity);
             }
-            playerMove.isAlive = false;
+            gameManager.isAlive = false;
         }
     }
 

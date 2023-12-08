@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class RestartScript : MonoBehaviour
 {
-    private GameObject player;
-    private MoveScript playerMove;
+    private GameObject nullPrefab;
+    private GameManagerScript gameManager;
 
     [SerializeField] private string loadScene;
     [SerializeField] private Color fadeColor = Color.black;
@@ -16,15 +16,15 @@ public class RestartScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerMove = player.GetComponent<MoveScript>();
-       
+        nullPrefab = GameObject.FindGameObjectWithTag("IsAlive");
+        gameManager = nullPrefab.GetComponent<GameManagerScript>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!playerMove.isAlive) {
+        if(!gameManager.isAlive) {
            /* if (Input.GetKeyDown(KeyCode.Space))
             {
                 Initiate.Fade(loadScene, fadeColor, fadeSpeedMultiplier);
