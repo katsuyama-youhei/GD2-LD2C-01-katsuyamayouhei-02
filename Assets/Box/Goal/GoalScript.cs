@@ -29,10 +29,12 @@ public class GoalScript : MonoBehaviour
         // 取得したタグを使って何かしらの処理を行う
         if (collidedObjectTag == "Player")
         {
-            Vector3 pos = new Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y, player.gameObject.transform.position.z - 0.5f);
+           // float newPosition = Random.Range(-1f, 1f);
+            //Vector3 pos = new Vector3(player.gameObject.transform.position.x+ newPosition, player.gameObject.transform.position.y, player.gameObject.transform.position.z - 0.5f);
             for (int i = 0; i < 30; i++)
             {
-
+                float newPosition = Random.Range(-1f, 1f);
+                Vector3 pos = new Vector3(player.gameObject.transform.position.x + newPosition, player.gameObject.transform.position.y, player.gameObject.transform.position.z - 0.5f);
                 Instantiate(particlePrehub, pos, Quaternion.identity);
             }
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class BalloonScript : MonoBehaviour
+public class ConfettiScript : MonoBehaviour
 {
 
     public static Particle particle;
@@ -13,25 +13,32 @@ public class BalloonScript : MonoBehaviour
     private Vector3 defaultScale;
     public float maxVelocity;
 
-    public GameObject particlePrehub;
 
+   
+    private float rotateX = 0;
+
+    
+    private float rotateY = 0;
+
+    private float rotateZ = 0;
     // Start is called before the first frame update
     void Start()
     {
         // パーティクルの表示時間
-        lifeTimer = Random.Range(0.8f,1.4f);
+        lifeTimer = 2f;
         leftLifeTime = lifeTimer;
-        float newScale = Random.Range(0.5f, 1f);
+        //float newScale = Random.Range(0.5f, 1f);
         // 乱数でパーティクルのスケールを変更
-       /* Vector3 newScale = new Vector3(
+        Vector3 newScale = new Vector3(
           Random.Range(0.5f, 1f),
           Random.Range(0.2f, 1f),
           Random.Range(0.2f, 1f)
-          );*/
+          );
 
         Transform transform = GetComponent<Transform>();
 
-        transform.localScale = new Vector3(newScale,newScale,newScale);
+        //transform.localScale = new Vector3(newScale, newScale, newScale);
+        transform.localScale = newScale;
 
         defaultScale = transform.localScale;
 
@@ -39,9 +46,19 @@ public class BalloonScript : MonoBehaviour
         velocity = new Vector3
             (
             Random.Range(-maxVelocity, maxVelocity),
-            Random.Range(0.1f, maxVelocity),
+            Random.Range(-maxVelocity, maxVelocity),
             Random.Range(-maxVelocity, maxVelocity)
             );
+
+        Vector3 newRotate = new Vector3(
+            Random.Range(10.0f,30.0f),
+            Random.Range(10.0f, 30.0f),
+            Random.Range(10.0f, 30.0f)
+            );
+
+        rotateX = newRotate.x;
+        rotateY= newRotate.y;
+        rotateZ = newRotate.z;
 
     }
 
@@ -50,6 +67,14 @@ public class BalloonScript : MonoBehaviour
     {
         leftLifeTime -= Time.deltaTime;
 
+        if (lifeTimer < 1.8f)
+        {
+            if (velocity.y > 0f)
+            {
+                velocity.y *= -1;
+            }
+        }
+
         transform.position += velocity * Time.deltaTime;
         transform.localScale = Vector3.Lerp
             (
@@ -57,14 +82,11 @@ public class BalloonScript : MonoBehaviour
             defaultScale,
             leftLifeTime / lifeTimer
             );
-        if (leftLifeTime <= 0) {
-            for (int i = 0; i < 10; i++)
-            {
-                float newPosition = Random.Range(-1f, 1f);
-                Vector3 pos = new Vector3(transform.position.x + newPosition,transform.position.y, transform.position.z);
-                Instantiate(particlePrehub, pos, Quaternion.identity);
-            }
-            Destroy(gameObject);
-        }
+
+        // X,Y,Z軸に対してそれぞれ、指定した角度ずつ回転させている。
+        // deltaTimeをかけることで、フレームごとではなく、1秒ごとに回転するようにしている。
+        gameObject.transform.Rotate(new Vector3(rotateX, rotateY, rotateZ) * Time.deltaTime);
+
+         if (leftLifeTime <= 0) { Destroy(gameObject); }
     }
 }
