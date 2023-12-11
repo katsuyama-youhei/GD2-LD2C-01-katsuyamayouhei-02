@@ -29,14 +29,40 @@ public class GoalScript : MonoBehaviour
         // 取得したタグを使って何かしらの処理を行う
         if (collidedObjectTag == "Player")
         {
-           // float newPosition = Random.Range(-1f, 1f);
-            //Vector3 pos = new Vector3(player.gameObject.transform.position.x+ newPosition, player.gameObject.transform.position.y, player.gameObject.transform.position.z - 0.5f);
-            for (int i = 0; i < 30; i++)
+            if (!playerMove.isGoal)
             {
-                float newPosition = Random.Range(-1f, 1f);
-                Vector3 pos = new Vector3(player.gameObject.transform.position.x + newPosition, player.gameObject.transform.position.y, player.gameObject.transform.position.z - 0.5f);
-                Instantiate(particlePrehub, pos, Quaternion.identity);
+                // float newPosition = Random.Range(-1f, 1f);
+                //Vector3 pos = new Vector3(player.gameObject.transform.position.x+ newPosition, player.gameObject.transform.position.y, player.gameObject.transform.position.z - 0.5f);
+                for (int i = 0; i < 10; i++)
+                {
+                    float newPosition = Random.Range(-1f, 1f);
+                    Vector3 pos = new Vector3(player.gameObject.transform.position.x + newPosition, player.gameObject.transform.position.y, player.gameObject.transform.position.z - 0.5f);
+                    Instantiate(particlePrehub, pos, Quaternion.identity);
+                }
+                playerMove.isGoal = true;
             }
+         
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == ("Player"))
+        {
+            if (!playerMove.isGoal)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    float newPosition = Random.Range(-1f, 1f);
+                    Vector3 pos = new Vector3(player.gameObject.transform.position.x + newPosition, player.gameObject.transform.position.y, player.gameObject.transform.position.z - 0.5f);
+                    Instantiate(particlePrehub, pos, Quaternion.identity);
+                }
+                playerMove.isGoal = true;
+            }
+          
+
+            
+        }
+    }
+
 }

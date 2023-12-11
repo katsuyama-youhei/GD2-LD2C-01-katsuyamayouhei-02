@@ -21,7 +21,7 @@ public class BalloonScript : MonoBehaviour
         // パーティクルの表示時間
         lifeTimer = Random.Range(0.8f,1.4f);
         leftLifeTime = lifeTimer;
-        float newScale = Random.Range(0.5f, 1f);
+        float newScale = Random.Range(0.8f, 1.5f);
         // 乱数でパーティクルのスケールを変更
        /* Vector3 newScale = new Vector3(
           Random.Range(0.5f, 1f),
@@ -58,18 +58,18 @@ public class BalloonScript : MonoBehaviour
             leftLifeTime / lifeTimer
             );
         if (leftLifeTime <= 0) {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 float newPosition = Random.Range(-1f, 1f);
                 Vector3 pos = new Vector3(transform.position.x + newPosition,transform.position.y, transform.position.z);
 
                 Vector3 newRotate = new Vector3(
-           Random.Range(10.0f, 30.0f),
-           Random.Range(10.0f, 30.0f),
-           Random.Range(10.0f, 30.0f)
+           Random.Range(0.0f, 30.0f),
+           Random.Range(0.0f, 30.0f),
+           Random.Range(0.0f, 30.0f)
            );
 
-                Quaternion initialRotation = Quaternion.Euler(newRotate.x, newRotate.y, newRotate.z);
+                Quaternion initialRotation = Quaternion.Euler(newRotate.x+30f, newRotate.y, newRotate.z);
 
                 Instantiate(particlePrehub, pos, initialRotation);
             }

@@ -34,13 +34,20 @@ public class GoalPlayerScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        string collidedObjectTag = collision.gameObject.tag;
+       // string collidedObjectTag = collision.gameObject.tag;
 
         // 取得したタグを使って何かしらの処理を行う
-        if (collidedObjectTag == "Goal")
+       /* if (collidedObjectTag == "Goal")
         {
             Debug.Log("ゴール");
             playerMove.isGoal = true;
-        }
+        }*/
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+       /* if (other.gameObject.CompareTag("Goal")){
+            playerMove.isGoal = true;
+        }*/
     }
 }

@@ -57,6 +57,8 @@ public class ConfettiScript : MonoBehaviour
         rotateY= newRotate.y;
         rotateZ = newRotate.z;
 
+       GetComponent<MeshRenderer>().material.color = new Color(Random.value, Random.value, Random.value, 1.0f);
+
     }
 
     // Update is called once per frame
