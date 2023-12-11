@@ -62,7 +62,16 @@ public class BalloonScript : MonoBehaviour
             {
                 float newPosition = Random.Range(-1f, 1f);
                 Vector3 pos = new Vector3(transform.position.x + newPosition,transform.position.y, transform.position.z);
-                Instantiate(particlePrehub, pos, Quaternion.identity);
+
+                Vector3 newRotate = new Vector3(
+           Random.Range(10.0f, 30.0f),
+           Random.Range(10.0f, 30.0f),
+           Random.Range(10.0f, 30.0f)
+           );
+
+                Quaternion initialRotation = Quaternion.Euler(newRotate.x, newRotate.y, newRotate.z);
+
+                Instantiate(particlePrehub, pos, initialRotation);
             }
             Destroy(gameObject);
         }

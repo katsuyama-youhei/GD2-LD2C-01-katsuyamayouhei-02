@@ -12,11 +12,8 @@ public class ConfettiScript : MonoBehaviour
     private Vector3 velocity;
     private Vector3 defaultScale;
     public float maxVelocity;
-
-
    
     private float rotateX = 0;
-
     
     private float rotateY = 0;
 
@@ -85,7 +82,7 @@ public class ConfettiScript : MonoBehaviour
 
         // X,Y,Z軸に対してそれぞれ、指定した角度ずつ回転させている。
         // deltaTimeをかけることで、フレームごとではなく、1秒ごとに回転するようにしている。
-        gameObject.transform.Rotate(new Vector3(rotateX, rotateY, rotateZ) * Time.deltaTime);
+       transform.Rotate(new Vector3(rotateX, rotateY, rotateZ) * Time.deltaTime);
 
          if (leftLifeTime <= 0) { Destroy(gameObject); }
     }

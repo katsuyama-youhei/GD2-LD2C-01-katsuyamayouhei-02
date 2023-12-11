@@ -12,6 +12,8 @@ public class GameManagerScript : MonoBehaviour
     {
         isAlive = true;
         player = GameObject.FindGameObjectWithTag("Player");
+
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
