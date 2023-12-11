@@ -12,7 +12,6 @@ public class BalloonScript : MonoBehaviour
     private Vector3 velocity;
     private Vector3 defaultScale;
     public float maxVelocity;
-    private float randomPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -20,16 +19,17 @@ public class BalloonScript : MonoBehaviour
         // パーティクルの表示時間
         lifeTimer = 1f;
         leftLifeTime = lifeTimer;
+        float newScale = Random.Range(0.5f, 1f);
         // 乱数でパーティクルのスケールを変更
-        Vector3 newScale = new Vector3(
+       /* Vector3 newScale = new Vector3(
           Random.Range(0.5f, 1f),
           Random.Range(0.2f, 1f),
           Random.Range(0.2f, 1f)
-          );
+          );*/
 
         Transform transform = GetComponent<Transform>();
 
-        transform.localScale = newScale;
+        transform.localScale = new Vector3(newScale,newScale,newScale);
 
         defaultScale = transform.localScale;
 
@@ -41,21 +41,12 @@ public class BalloonScript : MonoBehaviour
             Random.Range(-maxVelocity, maxVelocity)
             );
 
-        randomPosition = Random.Range(0.4f, 0.8f);
     }
 
     // Update is called once per frame
     void Update()
     {
         leftLifeTime -= Time.deltaTime;
-
-        if (leftLifeTime < randomPosition)
-        {
-            if (velocity.y > 0)
-            {
-                velocity.y *= -1;
-            }
-        }
 
         transform.position += velocity * Time.deltaTime;
         transform.localScale = Vector3.Lerp
