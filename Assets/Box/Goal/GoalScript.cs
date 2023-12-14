@@ -10,6 +10,8 @@ public class GoalScript : MonoBehaviour
     private MoveScript playerMove;
 
     public GameObject particlePrehub;
+
+    public GameObject SpaceText;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,7 @@ public class GoalScript : MonoBehaviour
                     Instantiate(particlePrehub, pos, Quaternion.identity);
                 }
                 playerMove.isGoal = true;
+                SpaceText.SetActive(true);
             }
          
         }
@@ -58,6 +61,7 @@ public class GoalScript : MonoBehaviour
                     Instantiate(particlePrehub, pos, Quaternion.identity);
                 }
                 playerMove.isGoal = true;
+                SpaceText.SetActive(true);
             }
           
 
