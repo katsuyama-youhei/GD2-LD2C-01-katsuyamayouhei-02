@@ -38,7 +38,7 @@ public class BalloonScript : MonoBehaviour
         // パーティクルの飛んでいく方向を乱数で
         velocity = new Vector3
             (
-            Random.Range(-maxVelocity, maxVelocity),
+            Random.Range(-0.2f, maxVelocity),
             Random.Range(0.1f, maxVelocity),
             Random.Range(-maxVelocity, maxVelocity)
             );

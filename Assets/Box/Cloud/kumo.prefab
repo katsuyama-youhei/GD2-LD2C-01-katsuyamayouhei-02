@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3497460754207431077}
   - component: {fileID: -5216993099400058677}
   - component: {fileID: -122943668135262726}
+  - component: {fileID: 7562832568953080855}
   m_Layer: 0
   m_Name: kumo
   m_TagString: Untagged
@@ -61,6 +62,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePrehub: {fileID: 2620708782576706653, guid: 74f2d13af2524e246a37df94917c1b04,
     type: 3}
+--- !u!114 &7562832568953080855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306191841190413087}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd5a7029cd3f6548ade97e4a5071156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5066375077834292166
 GameObject:
   m_ObjectHideFlags: 0

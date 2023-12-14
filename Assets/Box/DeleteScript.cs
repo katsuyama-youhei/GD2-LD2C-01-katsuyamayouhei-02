@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class GoalPlayerScript : MonoBehaviour
+public class DeleteScript : MonoBehaviour
 {
 
     private GameObject player;
     private MoveScript playerMove;
 
-    [SerializeField] private string loadScene;
-    [SerializeField] private Color fadeColor = Color.black;
-    [SerializeField] private float fadeSpeedMultiplier = 1.0f;
+    Transform transfom;
+   // GameObject gameObject;
+
     // Start is called before the first frame update
     void Start()
     {
+
+       // gameObject=GetComponent<GameObject>();
+        transfom =GetComponent<Transform>();
+
         player = GameObject.FindGameObjectWithTag("Player");
         playerMove = player.GetComponent<MoveScript>();
     }
@@ -22,13 +26,11 @@ public class GoalPlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerMove.isGoal)
+        if(playerMove.transform.position.x> transfom.position.x + 10f)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Initiate.Fade(loadScene, fadeColor, fadeSpeedMultiplier);
-            }
+            Debug.Log("è¡ãé");
+            Destroy(gameObject);
+          
         }
-       
     }
 }
