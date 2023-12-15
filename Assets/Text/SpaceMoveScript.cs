@@ -29,8 +29,5 @@ public class SpaceMoveScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
