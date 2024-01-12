@@ -43,6 +43,11 @@ public class MoveScript : MonoBehaviour
     private  GameObject nullPrefab;
     private GameManagerScript gameManager;
 
+    public AudioClip sound1;
+    AudioSource audioSource;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +56,8 @@ public class MoveScript : MonoBehaviour
 
         nullPrefab = GameObject.FindGameObjectWithTag("IsAlive");
         gameManager = nullPrefab.GetComponent<GameManagerScript>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -84,11 +91,29 @@ public class MoveScript : MonoBehaviour
 
         WindPower();
 
+
+
         // player‚ªŒã‚ë‚É‰º‚ª‚ê‚È‚¢‚æ‚¤‚É
-         if (horizontalInput < 0)
-          {
-              horizontalInput = 0;
-          }
+        if (horizontalInput < 0)
+        {
+            horizontalInput = 0;
+           
+        }
+        else if (horizontalInput > 0)
+        {
+            //audioSource.PlayOneShot(sound1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+          
+            audioSource.PlayOneShot(sound1);
+        }
+         if(Input.GetKeyUp(KeyCode.D))
+        {
+            audioSource.Stop();
+        }
+        
         // “ü—Í‚©‚çˆÚ“®ƒxƒNƒgƒ‹‚ğì¬
         Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
@@ -97,8 +122,6 @@ public class MoveScript : MonoBehaviour
 
 
         rb.velocity = newPosition;
-
-
 
 
         if (verticalInput < 0)
@@ -125,6 +148,7 @@ public class MoveScript : MonoBehaviour
         {
             windPower = 0.8f;
             windPowerX = -0.2f;
+           
         }
         else
         {
